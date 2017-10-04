@@ -30,17 +30,22 @@ export default class App extends React.Component {
         <Text style={styles.big}>Simple To Do App!</Text>
         <TextInput
           ref="todoInput"
-          placeholder="Input your todo here..."
+          placeholder="Input your todo..."
           style={{ width: '100%', height: 50, marginBottom: 15 }} 
           onChangeText={ text => this.setState({ textInput: text }) }/>
         <Button 
           title='Add todo'
           onPress={ (this.handleSubmitTodo) }/>
-        <Text>{ this.state.todo.length === 0 ? '' : 'Press to mark it as completed:'}</Text>
+        <Text style={{ marginBottom: 10 }} >{ this.state.todo.length === 0 ? '' : ('Press to mark it as completed: (' + this.state.todo.length + ')')}</Text>
         <FlatList 
+          style={{ marginBottom: 10 }}
           data={ this.state.todo }
           onPressItem={ () => Alert.alert('Hubla') }
           renderItem={ ({item}) => <ListItem text={item.key} /> }/>
+        <Button 
+          onPress={() => this.setState({ todo: [] })}
+          title='Clear list'
+          color='#e74c3c' />
       </View>
     );
   }

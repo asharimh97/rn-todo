@@ -15,7 +15,11 @@ export default class ListItem extends Component{
             completed : !this.state.completed
         })
 
-        return Alert.alert('Hubla', 'Hello from ' + this.props.text)
+        let alert = this.state.completed === false ? 
+            Alert.alert('Hubla', 'You have finished ' + this.props.text) :
+            Alert.alert('Woops', 'You havent done '+ this.props.text)
+        
+        return alert
     }
     
     render(){
